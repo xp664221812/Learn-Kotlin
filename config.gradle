@@ -1,0 +1,76 @@
+ext {
+    android = [
+            applicationId    : 'com.xp.learn',
+            compileSdkVersion: 28,
+            minSdkVersion    : 23,
+            targetSdkVersion : 28,
+            versionCode      : 1,
+            versionName      : '1.0.0',
+            multiDexEnabled  : true
+    ]
+
+
+    depVersion = [
+            appcompat             : '28.0.0',
+            design                : '28.0.0',
+            recyclerView          : '28.0.0',
+            constraint            : '1.1.3',
+            magicindicator        : '1.5.0',
+            gson                  : '2.8.6',
+            rxJava                : "2.2.2",
+            rxAndroid             : "2.1.0",
+            glide                 : '4.9.0',
+            glideCompiler         : '4.9.0',
+            eventbus              : '3.1.1',
+            greendao              : '3.2.2',
+            materialedittext      : '2.1.4',
+            SuperTextView         : '2.1.8',
+            bgaBanner             : '3.0.0',
+            spinKit               : '1.4.0',
+            multipleStatusView    : '1.7',
+            retrofit              : '2.7.1',
+            okhttpLogInterceptor  : '3.14.4',
+            butterknife           : '10.2.1',
+            utilcode              : '1.26.0',
+            bottomNavigationViewEx: '2.0.2',
+            brvah                 : '2.9.40'
+
+    ]
+
+
+    depsLibs = [
+            appcompat             : "com.android.support:appcompat-v7:${depVersion.appcompat}",
+            magicindicator        : "com.github.hackware1993:MagicIndicator:${depVersion.magicindicator}",
+            gson                  : "com.google.code.gson:gson:${depVersion.gson}",
+            rxJava                : "io.reactivex.rxjava2:rxjava:${depVersion.rxJava}",
+            rxAndroid             : "io.reactivex.rxjava2:rxandroid:${depVersion.rxAndroid}",
+            glide                 : "com.github.bumptech.glide:glide:${depVersion.glide}",
+            eventbus              : "org.greenrobot:eventbus:${depVersion.eventbus}",
+            greendao              : "org.greenrobot:greendao:${depVersion.greendao}",
+            design                : "com.android.support:design:${depVersion.design}",
+            recyclerView          : "com.android.support:recyclerview-v7:${depVersion.recyclerView}",
+            constraint            : "com.android.support.constraint:constraint-layout:${depVersion.constraint}",
+            materialedittext      : "com.rengwuxian.materialedittext:library:${depVersion.materialedittext}",
+            SuperTextView         : "com.github.lygttpod:SuperTextView:${depVersion.SuperTextView}",
+            bgaBanner             : "cn.bingoogolapple:bga-banner:${depVersion.bgaBanner}",
+            spinKit               : "com.github.ybq:Android-SpinKit:${depVersion.spinKit}",
+            multipleStatusView    : "com.classic.common:multiple-status-view:${depVersion.multipleStatusView}",
+            brvah                 : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${depVersion.brvah}",
+
+            retrofit              : "com.squareup.retrofit2:retrofit:${depVersion.retrofit}",
+            retrofitConvertGson   : "com.squareup.retrofit2:converter-gson:${depVersion.retrofit}",
+            retrofitAdapterRxjava2: "com.squareup.retrofit2:adapter-rxjava2:${depVersion.retrofit}",
+            okhttpLogInterceptor  : "com.squareup.okhttp3:logging-interceptor:${depVersion.okhttpLogInterceptor}",
+            utilcode              : "com.blankj:utilcode:${depVersion.utilcode}",
+
+    ]
+
+    others = [
+            glideCompiler         : "com.github.bumptech.glide:compiler:${depVersion.glideCompiler}",
+            bottomNavigationViewEx: "com.github.ittianyu:BottomNavigationViewEx:${depVersion.bottomNavigationViewEx}"
+    ]
+
+
+    commonLibs = depsLibs.values()
+
+}
