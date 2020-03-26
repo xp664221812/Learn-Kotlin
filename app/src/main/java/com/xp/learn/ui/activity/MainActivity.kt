@@ -190,6 +190,7 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainContract.Presenter>(
         return MainPresenter()
     }
 
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEventLogin(loginEvent: LoginEvent) {
         if (loginEvent.isLogin) {
@@ -197,7 +198,6 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainContract.Presenter>(
             showToast("登陆成功了")
         }
     }
-
 
     override fun useEventBus() = true
 

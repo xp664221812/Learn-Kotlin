@@ -19,6 +19,7 @@ import com.xp.learn.bean.Banner
 import com.xp.learn.constant.Constant
 import com.xp.learn.mvp.contract.HomeContract
 import com.xp.learn.mvp.presenter.HomePresenter
+import com.xp.learn.ui.activity.ContentActivity
 import com.xp.learn.ui.activity.LoginActivity
 import com.xp.lib_common_ui.base.BaseMVPFragment
 import io.reactivex.Observable
@@ -74,6 +75,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomeContract.Presenter>(
             bindToRecyclerView(recyclerView)
             setOnLoadMoreListener(loadMoreListener, recyclerView)
             onItemChildClickListener = this@HomeFragment.onItemChildClickListener
+            onItemClickListener = this@HomeFragment.onItemClickListener
 
             addHeaderView(bannerView)
         }
@@ -148,6 +150,15 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomeContract.Presenter>(
         homeAdapter.setEnableLoadMore(false)
         mPresenter?.requestHomeData()
     }
+
+    private val onItemClickListener =
+        BaseQuickAdapter.OnItemClickListener { _, _, position ->
+            val article = homeAdapter.getItem(position)
+            val intent = Intent(activity, ContentActivity::class.java)
+            intent.putExtra("link", article?.link)
+            startActivity(intent)
+
+        }
 
 
     private val onItemChildClickListener =

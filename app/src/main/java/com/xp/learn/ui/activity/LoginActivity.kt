@@ -34,7 +34,6 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginContract.Presente
     }
 
     override fun loginSuccess(httpResult: HttpResult<LoginData>) {
-        LogUtils.d("111111111111111111")
         if (httpResult.data == null) {
             showToast("账号或密码错误")
         } else {
