@@ -14,11 +14,32 @@ android {
         targetSdkVersion rootProject.android.targetSdkVersion
         versionCode rootProject.android.versionCode
         versionName rootProject.android.versionName
+        multiDexEnabled true
 
     }
-    buildTypes {
+
+    signingConfigs {
         release {
+            keyAlias 'learn'
+            keyPassword '664221812'
+            storeFile file('../learn.jks')
+            storePassword '664221812'
+        }
+    }
+
+    buildTypes {
+
+        debug {
+            signingConfig signingConfigs.release
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            signingConfig signingConfigs.release
+//            minifyEnabled true
+//            zipAlignEnabled true
+
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -27,6 +48,27 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    //自定义打包时apk名称
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->// each 改为 all
+
+            if (output.outputFile != null && output.outputFile.name.endsWith('.apk')
+                    && 'release'.equals(variant.buildType.name)) {
+                output.outputFileName = "learn_v${variant.versionName}_release.apk"
+            }
+
+            if (output.outputFile != null && output.outputFile.name.endsWith('.apk')
+                    && 'debug'.equals(variant.buildType.name)) {
+                output.outputFileName = "learn_${variant.versionName}_debug.apk"
+            }
+        }
+    }
+
 }
 
 dependencies {
