@@ -11,7 +11,7 @@ import io.reactivex.Observable
 
 interface HomeContract {
     interface View : IView {
-        fun setBanner(banners: List<Banner>)
+        fun setBanner(banners: List<Banner>?)
         fun setArticles(articles: ArticleResponseBody)
     }
 

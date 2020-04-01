@@ -9,7 +9,7 @@ import io.reactivex.Observable
 
 interface MainContract {
     interface View : IView {
-        fun showUserInfo(userInfoBody: UserInfoBody)
+        fun showUserInfo(userInfoBody: UserInfoBody?)
     }
 
     interface Presenter : IPresenter<View> {

@@ -163,7 +163,7 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainContract.Presenter>(
     override fun initListeners() {
     }
 
-    override fun showUserInfo(bean: UserInfoBody) {
+    override fun showUserInfo(bean: UserInfoBody?) {
         if (bean == null) {
             return
         }

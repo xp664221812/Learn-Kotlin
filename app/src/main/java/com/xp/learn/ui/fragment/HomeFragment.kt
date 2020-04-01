@@ -88,7 +88,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomeContract.Presenter>(
         mPresenter?.requestHomeData()
     }
 
-    override fun setBanner(list: List<Banner>) {
+    override fun setBanner(list: List<Banner>?) {
         banners = list as ArrayList<Banner>
         var pathList = ArrayList<String>()
         var titleList = ArrayList<String>()
