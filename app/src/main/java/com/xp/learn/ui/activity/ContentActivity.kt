@@ -5,6 +5,7 @@ import android.net.Uri
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.TextView
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.xp.learn.R
@@ -12,6 +13,8 @@ import com.xp.learn.mvp.contract.ContentContract
 import com.xp.learn.mvp.presenter.ContentPresenter
 import com.xp.lib_common_ui.base.BaseMVPActivity
 import kotlinx.android.synthetic.main.activity_content.*
+import kotlinx.android.synthetic.main.common_toolbar.*
+import kotlinx.android.synthetic.main.common_toolbar_back_view.*
 import java.net.URISyntaxException
 
 class ContentActivity : BaseMVPActivity<ContentContract.View, ContentContract.Presenter>(),
@@ -23,6 +26,11 @@ class ContentActivity : BaseMVPActivity<ContentContract.View, ContentContract.Pr
     private val link: String by lazy {
         intent.getStringExtra("link")
     }
+
+    private val title: String by lazy {
+        intent.getStringExtra("title")
+    }
+
 
     override fun initData() {
         webView.loadUrl(link)
@@ -97,9 +105,17 @@ class ContentActivity : BaseMVPActivity<ContentContract.View, ContentContract.Pr
         webView.settings.builtInZoomControls = true
 
         webView.settings.domStorageEnabled = true
+        tv_title?.text = title
+        tv_title?.isSelected = true
+
     }
 
     override fun initListeners() {
+        toolbar.setOnClickListener {
+            onBackPressed()
+        }
+
+
     }
 
     override fun hideLoading() {

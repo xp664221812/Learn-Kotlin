@@ -28,15 +28,15 @@ import kotlinx.android.synthetic.main.item_home_banner.view.*
 
 class HomeFragment : BaseMVPFragment<HomeContract.View, HomeContract.Presenter>(),
     HomeContract.View {
-    lateinit var banners: ArrayList<Banner>
+    private lateinit var banners: ArrayList<Banner>
 
-    lateinit var bannerView: View
+    private lateinit var bannerView: View
 
     var data = mutableListOf<Article>()
 
-    var currentPage = 1
+    private var currentPage = 1
 
-    var isRefresh = true
+    private var isRefresh = true
 
     private val homeAdapter: HomeAdapter by lazy {
         HomeAdapter(activity, data)
@@ -156,6 +156,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomeContract.Presenter>(
             val article = homeAdapter.getItem(position)
             val intent = Intent(activity, ContentActivity::class.java)
             intent.putExtra("link", article?.link)
+            intent.putExtra("title", article?.title)
             startActivity(intent)
 
         }
