@@ -102,6 +102,10 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomeContract.Presenter>(
             setAutoPlayAble(banners.size > 1)
             setData(pathList, titleList)
             setAdapter(bannerAdapter)
+            setDelegate { banner, itemView, model, position ->
+                val data = banners[position]
+                ContentActivity.startActivity(activity, data.title, data.url)
+            }
         }
 
 
@@ -155,10 +159,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomeContract.Presenter>(
         BaseQuickAdapter.OnItemClickListener { _, _, position ->
             val article = homeAdapter.getItem(position)
             val intent = Intent(activity, ContentActivity::class.java)
-            intent.putExtra("link", article?.link)
-            intent.putExtra("title", article?.title)
-            startActivity(intent)
-
+            ContentActivity.startActivity(activity, article?.title ?: "", article?.link ?: "")
         }
 
 

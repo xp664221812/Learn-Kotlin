@@ -1,7 +1,9 @@
 package com.xp.learn.ui.activity
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -22,6 +24,17 @@ class ContentActivity : BaseMVPActivity<ContentContract.View, ContentContract.Pr
     override fun createPresenter(): ContentContract.Presenter? = ContentPresenter()
 
     override fun initLayout(): Int = R.layout.activity_content
+
+    companion object{
+        fun startActivity(context: Context?,  title: String, link: String, bundle: Bundle? = null){
+            Intent(context, ContentActivity::class.java).run {
+                putExtra("title",title)
+                putExtra("link",link)
+                context?.startActivity(this,bundle)
+            }
+        }
+    }
+
 
     private val link: String by lazy {
         intent.getStringExtra("link")
