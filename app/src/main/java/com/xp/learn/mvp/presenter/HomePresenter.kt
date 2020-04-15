@@ -3,6 +3,7 @@ package com.xp.learn.mvp.presenter
 import com.xp.learn.bean.Article
 import com.xp.learn.bean.ArticleResponseBody
 import com.xp.learn.bean.HttpResult
+import com.xp.learn.ext.loge
 import com.xp.learn.ext.ss
 import com.xp.learn.mvp.contract.HomeContract
 import com.xp.learn.mvp.model.HomeModel
@@ -22,7 +23,6 @@ class HomePresenter : BasePresenter<HomeContract.Model, HomeContract.View>(),
         mModel?.requestBanner()?.ss(mModel, mView, false) {
             mView?.setBanner(it.data)
         }
-
 
     }
 

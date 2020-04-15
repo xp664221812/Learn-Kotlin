@@ -10,7 +10,6 @@ class App : Application() {
     companion object {
         var context: Context? = null
 
-
     }
 
 
@@ -19,6 +18,7 @@ class App : Application() {
         context = this
 
         NetworkHelper.initContext(this)
+
     }
 
 

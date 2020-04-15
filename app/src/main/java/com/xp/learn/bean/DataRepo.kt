@@ -3,7 +3,7 @@ package com.xp.learn.bean
 import com.google.gson.annotations.SerializedName
 
 data class HttpResult<T>(
-    @SerializedName("data") val data: T
+    val data: T
 ) : BaseBean()
 
 data class Article(
