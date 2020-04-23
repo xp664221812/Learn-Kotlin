@@ -10,6 +10,7 @@ import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.FragmentTransaction
 import com.blankj.utilcode.util.SPUtils
 import com.blankj.utilcode.util.SizeUtils
+import com.meituan.android.walle.WalleChannelReader
 import com.xp.learn.R
 import com.xp.learn.bean.UserInfoBody
 import com.xp.learn.constant.Constant
@@ -136,6 +137,7 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainContract.Presenter>(
     override fun onStart() {
         super.onStart()
         mPresenter?.getUserInfo()
+
     }
 
     private fun initNavigationView() {
@@ -206,7 +208,6 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainContract.Presenter>(
      */
     companion object {
         val TAG = MainActivity::class.simpleName
-
     }
 
 }
