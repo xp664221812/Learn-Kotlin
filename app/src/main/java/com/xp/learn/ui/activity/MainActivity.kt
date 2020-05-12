@@ -14,6 +14,7 @@ import com.xp.learn.R
 import com.xp.learn.bean.UserInfoBody
 import com.xp.learn.constant.Constant
 import com.xp.learn.event.LoginEvent
+import com.xp.learn.ext.loge
 import com.xp.learn.mvp.contract.MainContract
 import com.xp.learn.mvp.presenter.MainPresenter
 import com.xp.learn.ui.fragment.HomeFragment
@@ -22,6 +23,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_toolbar.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import kotlin.concurrent.thread
+import kotlin.coroutines.experimental.Continuation
+import kotlin.coroutines.experimental.CoroutineContext
+import kotlin.coroutines.experimental.EmptyCoroutineContext
+import kotlin.coroutines.experimental.startCoroutine
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class MainActivity : BaseMVPActivity<MainContract.View, MainContract.Presenter>(),
     MainContract.View {
@@ -161,6 +169,24 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainContract.Presenter>(
     }
 
     override fun initListeners() {
+        suspend {
+            test1()
+
+            test2()
+
+        }.startCoroutine(object : Continuation<Int> {
+            override val context: CoroutineContext
+                get() = EmptyCoroutineContext
+
+            override fun resume(value: Int) {
+                loge("$value" + "xxx")
+            }
+
+            override fun resumeWithException(exception: Throwable) {
+            }
+
+
+        })
     }
 
     override fun showUserInfo(bean: UserInfoBody?) {
@@ -207,6 +233,16 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainContract.Presenter>(
     companion object {
         val TAG = MainActivity::class.simpleName
 
+    }
+
+    private suspend fun test1() = suspendCoroutine<Int> {
+        thread {
+            it.resume(111);
+        }
+    }
+
+    private suspend fun test2() = suspendCoroutine<Int> {
+        it.resume(111);
     }
 
 }

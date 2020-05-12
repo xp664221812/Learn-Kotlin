@@ -25,6 +25,9 @@ import com.xp.lib_common_ui.base.BaseMVPFragment
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_refresh_layout.*
 import kotlinx.android.synthetic.main.item_home_banner.view.*
+import kotlin.concurrent.thread
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class HomeFragment : BaseMVPFragment<HomeContract.View, HomeContract.Presenter>(),
     HomeContract.View {
@@ -184,5 +187,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomeContract.Presenter>(
     companion object {
         fun getInstance(): HomeFragment = HomeFragment()
     }
+
+
 
 }
