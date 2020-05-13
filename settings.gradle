@@ -1,2 +1,3 @@
 include ':app', ':lib_common_ui', ':lib_network'
 rootProject.name='learn'
+include ':test'

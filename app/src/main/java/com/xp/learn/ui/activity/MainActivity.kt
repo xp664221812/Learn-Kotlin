@@ -25,12 +25,7 @@ import kotlinx.android.synthetic.main.main_toolbar.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import kotlin.concurrent.thread
-import kotlin.coroutines.experimental.Continuation
-import kotlin.coroutines.experimental.CoroutineContext
-import kotlin.coroutines.experimental.EmptyCoroutineContext
-import kotlin.coroutines.experimental.startCoroutine
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
+import kotlin.coroutines.*
 
 class MainActivity : BaseMVPActivity<MainContract.View, MainContract.Presenter>(),
     MainContract.View {
@@ -189,11 +184,8 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainContract.Presenter>(
             override val context: CoroutineContext
                 get() = EmptyCoroutineContext
 
-            override fun resume(value: Int) {
-                loge("$value" + "xxx")
-            }
-
-            override fun resumeWithException(exception: Throwable) {
+            override fun resumeWith(result: Result<Int>) {
+                loge("$result" + "xxx")
             }
 
 
@@ -256,7 +248,7 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainContract.Presenter>(
     }
 
     private fun test3(f1: (Int, String) -> Int) {
-        f1(1,"")
+        f1(1, "")
     }
 
 }
