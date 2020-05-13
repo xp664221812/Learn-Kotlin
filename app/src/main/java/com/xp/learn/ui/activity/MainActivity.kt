@@ -171,6 +171,15 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainContract.Presenter>(
     }
 
     override fun initListeners() {
+        test3 { i, _ ->
+            return@test3 i
+        }
+
+        test3(fun(i: Int, _: String): Int {
+            return i
+        })
+
+
         suspend {
             test1()
 
@@ -244,6 +253,10 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainContract.Presenter>(
 
     private suspend fun test2() = suspendCoroutine<Int> {
         it.resume(111);
+    }
+
+    private fun test3(f1: (Int, String) -> Int) {
+        f1(1,"")
     }
 
 }
