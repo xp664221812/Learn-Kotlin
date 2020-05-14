@@ -1,5 +1,6 @@
 package com.xp.learn.widget
 
+import kotlin.concurrent.thread
 import kotlin.coroutines.*
 
 fun main() {
@@ -10,10 +11,18 @@ fun main() {
     }
     val seq = nums(10)
 
+    println(seq)
+
     for (j in seq) {
         println(j)
     }
 
+}
+
+fun <T> generator(block: suspend GenerateScope<T>.(T) -> Unit): (T) -> Generator<T> {
+    return { parameter: T ->
+        GeneratorImpl(block, parameter)
+    }
 }
 
 interface Generator<T> {
@@ -48,6 +57,7 @@ class GeneratorIterator<T>(
 
     init {
         val suspendBlock: suspend GenerateScope<T>.() -> Unit = { block(parameter) }
+
 
         val start = suspendBlock.createCoroutine(this, this)
 
@@ -104,9 +114,13 @@ abstract class GenerateScope<T> internal constructor() {
 
 }
 
-
-fun <T> generator(block: suspend GenerateScope<T>.(T) -> Unit): (T) -> Generator<T> {
-    return { parameter: T ->
-        GeneratorImpl(block, parameter)
-    }
+suspend fun test1(block: suspend () -> Int) = suspendCoroutine<Int> {
+    println("1111")
+    it.resume(111)
 }
+
+suspend fun test2() = suspendCoroutine<Int> {
+    it.resume(3)
+}
+
+
