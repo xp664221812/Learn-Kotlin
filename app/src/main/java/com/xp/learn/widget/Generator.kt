@@ -1,12 +1,14 @@
 package com.xp.learn.widget
 
+import com.xp.learn.ext.loge
 import kotlin.concurrent.thread
 import kotlin.coroutines.*
 
 fun main() {
-    val nums = generator { start: Int ->
+    /*val nums = generator { start: Int ->
         for (i in 0..5) {
             yield(i + start)
+
         }
     }
     val seq = nums(10)
@@ -15,7 +17,20 @@ fun main() {
 
     for (j in seq) {
         println(j)
-    }
+    }*/
+
+    suspend {
+        test1()
+        test2()
+    }.startCoroutine(object : Continuation<Int> {
+        override val context: CoroutineContext = EmptyCoroutineContext
+
+        override fun resumeWith(result: Result<Int>) {
+            println("complete=====$result")
+        }
+
+    })
+
 
 }
 
@@ -114,13 +129,21 @@ abstract class GenerateScope<T> internal constructor() {
 
 }
 
-suspend fun test1(block: suspend () -> Int) = suspendCoroutine<Int> {
-    println("1111")
+suspend fun test1() = suspendCoroutine<Int> {
+    println("test1=====$it")
     it.resume(111)
 }
 
-suspend fun test2() = suspendCoroutine<Int> {
-    it.resume(3)
+suspend fun test2(): Int = suspendCoroutine<Int> {
+    println("test2=====$it")
+    thread {
+
+        it.resume(3)
+    }
+}
+
+suspend fun test3() {
+    test2()
 }
 
 
